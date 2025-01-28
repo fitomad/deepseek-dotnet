@@ -113,6 +113,10 @@ ModelListResponse response = await _client.Models.List();
 
 ## Changes
 
+### 1.0.1
+
+- `DeepSeekException` now contains a nested enumeration of type `Failure` to help exception description.
+
 ### 1.0.0
 
 - Chat endpoint models brings support the following:
