@@ -127,27 +127,27 @@ public sealed class ChatRequestBuilder
     {
         if(request.Temperature.IsOutOfOpenAIRange())
         {
-            throw new DeepSeekException($"Temperature parameter is out of range. Current value:({request.Temperature})");
+            throw new DeepSeekException($"Temperature parameter is out of range. Current value:({request.Temperature})", failure: DeepSeekException.Failure.RequestParameter);
         }
 
         if(request.FrequencyPenalty.IsOutOfOpenAIRange()) 
         {
-            throw new DeepSeekException($"Frequency Penalty parameter is out of range. Current value:({request.FrequencyPenalty})");
+            throw new DeepSeekException($"Frequency Penalty parameter is out of range. Current value:({request.FrequencyPenalty})", failure: DeepSeekException.Failure.RequestParameter);
         }
 
         if(request.PresencePenalty.IsOutOfOpenAIRange()) 
         {
-            throw new DeepSeekException($"Presence Penalty parameter is out of range. Current value:({request.PresencePenalty})");
+            throw new DeepSeekException($"Presence Penalty parameter is out of range. Current value:({request.PresencePenalty})", failure: DeepSeekException.Failure.RequestParameter);
         }
 
         if(string.IsNullOrEmpty(request.ModelName))
         {
-            throw new DeepSeekException("A model name is mandatory.");
+            throw new DeepSeekException("A model name is mandatory.", failure: DeepSeekException.Failure.RequestParameter);
         }
 
         if(request.Messages.Count == 0)
         {
-            throw new DeepSeekException("You must provide one message at least.");
+            throw new DeepSeekException("You must provide one message at least.", failure: DeepSeekException.Failure.RequestParameter);
         } 
 
         return request;
