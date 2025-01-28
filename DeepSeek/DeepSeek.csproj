@@ -33,4 +33,7 @@
       <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="DeepSeek.Tests" />
+    </ItemGroup>
 </Project>

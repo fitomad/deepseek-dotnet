@@ -5,7 +5,7 @@ namespace Fitomad.DeepSeek.Endpoints;
 
 public class Endpoint
 {
-    protected DeepSeekException.Failure ProcessHttpStatus(HttpStatusCode responseStatus)
+    protected internal DeepSeekException.Failure ProcessHttpStatus(HttpStatusCode responseStatus)
     {
         var statusCode = (int) responseStatus;
         
