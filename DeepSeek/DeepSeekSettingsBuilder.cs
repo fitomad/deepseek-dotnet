@@ -32,7 +32,7 @@ public class DeepSeekSettingsBuilder
     {
         if(string.IsNullOrEmpty(_settings.ApiKey))
         {
-            throw new DeepSeekException("Yoy must specified an API key");
+            throw new DeepSeekException("Yoy must specified an API key", failure: DeepSeekException.Failure.RequestParameter);
         }
 
         return _settings;
