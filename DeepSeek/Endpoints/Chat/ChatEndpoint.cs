@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Net.Http.Json;
@@ -23,12 +24,22 @@ public sealed class ChatEndpoint: IChatEndpoint
     {
         var payload = JsonSerializer.Serialize(chatRequest);
         var httpContent = new StringContent(payload, Encoding.UTF8, "application/json");
-        HttpResponseMessage response = await _httpClient.PostAsync(Endpoint.Create, httpContent);
 
-        var chatResponse = await response.Content.ReadFromJsonAsync<ChatResponse>();
+        try
+        {
+            HttpResponseMessage response = await _httpClient.PostAsync(Endpoint.Create, httpContent);
+            var chatResponse = await response.Content.ReadFromJsonAsync<ChatResponse>();
 
-        return chatResponse;
-    }
+            if(response.StatusCode != HttpStatusCode.OK)
+            {
+                
+            }
+            return chatResponse;
+        }
+        catch (Exception ex)
+        {
+        }
+}
 
     internal static class Endpoint
     {

@@ -5,9 +5,29 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>Fitomad.DeepSeek</RootNamespace>
-      <UserSecretsId>ddbb0222-0c0c-4046-bb06-75d51b239385</UserSecretsId>
+        <UserSecretsId>ddbb0222-0c0c-4046-bb06-75d51b239385</UserSecretsId>
+        <!-- nuget -->
+        <PackageId>Fitomad.DeepSeek</PackageId>
+        <Version>1.0.1</Version>
+        <Authors>Adolfo Vera</Authors>
+        <Company>Fitomad</Company>
+        <Description>Fitomad.DeepSeek is a .NET library that allows you to access the powerful AI models from DeepSeek, such as deepseek-chat or deepseek-, through a simple and intuitive interface. You can use Fitomad.DeepSeek to generate text or code with just a few lines of code. Fitomad.DeepSeek provides various options to customize your requests and responses. Whether you want to create a chatbot, a content generator, a sentiment analyzer, a translator, or any other AI-powered application, Fitomad.DeepSeek can help you achieve your goals with ease and efficiency.</Description>
+        <RepositoryUrl>https://github.com/fitomad/deepseek-dotnet</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>package-icon.jpg</PackageIcon>
   </PropertyGroup>
 
+    <ItemGroup>
+        <None Include=".\package-icon.jpg">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+    
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
