@@ -11,7 +11,7 @@ public interface IChatEndpoint
     public Task<ChatResponse> CreateChatAsync(ChatRequest chatRequest);
 }
 
-public sealed class ChatEndpoint: IChatEndpoint
+public sealed class ChatEndpoint: Endpoint, IChatEndpoint
 {
     private HttpClient _httpClient;
 
@@ -25,23 +25,19 @@ public sealed class ChatEndpoint: IChatEndpoint
         var payload = JsonSerializer.Serialize(chatRequest);
         var httpContent = new StringContent(payload, Encoding.UTF8, "application/json");
 
-        try
-        {
-            HttpResponseMessage response = await _httpClient.PostAsync(Endpoint.Create, httpContent);
-            var chatResponse = await response.Content.ReadFromJsonAsync<ChatResponse>();
+        HttpResponseMessage response = await _httpClient.PostAsync(Endpoint.Create, httpContent);
+        var chatResponse = await response.Content.ReadFromJsonAsync<ChatResponse>();
 
-            if(response.StatusCode != HttpStatusCode.OK)
-            {
-                
-            }
-            return chatResponse;
-        }
-        catch (Exception ex)
+        if(response.StatusCode != HttpStatusCode.OK)
         {
+            var responseFailure = ProcessHttpStatus(responseStatus: response.StatusCode);
+            throw new DeepSeekException(message: "", failure: responseFailure);
         }
-}
 
-    internal static class Endpoint
+        return chatResponse;
+    }
+
+    private static class Endpoint
     {
         internal const string Create = "chat/completions";
     }
